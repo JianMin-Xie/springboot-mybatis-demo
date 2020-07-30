@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xjm.springboot.mybatis.demo.mapper.SalgradeMapper">
+    <resultMap id="BaseResultMap" type="com.xjm.springboot.mybatis.demo.domain.Salgrade">
+        <!--@mbg.generated-->
+        <!--@Table salgrade-->
+        <result column="grade" jdbcType="INTEGER" property="grade"/>
+        <result column="losal" jdbcType="INTEGER" property="losal"/>
+        <result column="hisal" jdbcType="INTEGER" property="hisal"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        grade, losal, hisal
+    </sql>
+    <insert id="insert" parameterType="com.xjm.springboot.mybatis.demo.domain.Salgrade">
+        <!--@mbg.generated-->
+        insert into salgrade (grade, losal, hisal
+        )
+        values (#{grade,jdbcType=INTEGER}, #{losal,jdbcType=INTEGER}, #{hisal,jdbcType=INTEGER}
+        )
+    </insert>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from salgrade
+  </select>
+
+    <delete id="delete" parameterType="int">
+        delete from salgrade where grade = #{grade}
+    </delete>
+
+    <update id="update" parameterType="com.xjm.springboot.mybatis.demo.domain.Salgrade">
+        update salgrade
+        set losal = #{losal,jdbcType=INTEGER},
+        hisal = #{hisal,jdbcType=INTEGER}
+        where grade = #{grade,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByGrade" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from salgrade
+        where grade = #{grade}
+
+    </select>
+
+</mapper>

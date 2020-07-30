@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xjm.springboot.mybatis.demo.mapper.EmpMapper">
+  <resultMap id="BaseResultMap" type="com.xjm.springboot.mybatis.demo.domain.Emp">
+    <!--@mbg.generated-->
+    <!--@Table emp-->
+    <id column="empno" jdbcType="INTEGER" property="empno" />
+    <result column="ename" jdbcType="VARCHAR" property="ename" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="mgr" jdbcType="INTEGER" property="mgr" />
+    <result column="hiredate" jdbcType="DATE" property="hiredate" />
+    <result column="sal" jdbcType="DECIMAL" property="sal" />
+    <result column="comm" jdbcType="DECIMAL" property="comm" />
+    <result column="deptno" jdbcType="INTEGER" property="deptno" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    empno, ename, job, mgr, hiredate, sal, comm, deptno
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from emp
+    where empno = #{empno,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from emp
+    where empno = #{empno,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" keyColumn="empno" keyProperty="empno" parameterType="com.xjm.springboot.mybatis.demo.domain.Emp" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into emp (ename, job, mgr, 
+      hiredate, sal, comm, deptno
+      )
+    values (#{ename,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{mgr,jdbcType=INTEGER}, 
+      #{hiredate,jdbcType=DATE}, #{sal,jdbcType=DECIMAL}, #{comm,jdbcType=DECIMAL}, #{deptno,jdbcType=INTEGER}
+      )
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.xjm.springboot.mybatis.demo.domain.Emp">
+    <!--@mbg.generated-->
+    update emp
+    set ename = #{ename,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+      mgr = #{mgr,jdbcType=INTEGER},
+      hiredate = #{hiredate,jdbcType=DATE},
+      sal = #{sal,jdbcType=DECIMAL},
+      comm = #{comm,jdbcType=DECIMAL},
+      deptno = #{deptno,jdbcType=INTEGER}
+    where empno = #{empno,jdbcType=INTEGER}
+  </update>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from emp
+    </select>
+</mapper>

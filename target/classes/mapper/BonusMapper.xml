@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xjm.springboot.mybatis.demo.mapper.BonusMapper">
+  <resultMap id="BaseResultMap" type="com.xjm.springboot.mybatis.demo.domain.Bonus">
+    <!--@mbg.generated-->
+    <!--@Table bonus-->
+    <result column="ename" jdbcType="VARCHAR" property="ename" />
+    <result column="job" jdbcType="VARCHAR" property="job" />
+    <result column="sal" jdbcType="DECIMAL" property="sal" />
+    <result column="comm" jdbcType="DECIMAL" property="comm" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ename, job, sal, comm
+  </sql>
+
+  <insert id="insert" parameterType="com.xjm.springboot.mybatis.demo.domain.Bonus">
+    <!--@mbg.generated-->
+    insert into bonus (ename, job, sal, 
+      comm)
+    values (#{ename,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{sal,jdbcType=DECIMAL}, 
+      #{comm,jdbcType=DECIMAL})
+  </insert>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from bonus
+  </select>
+
+  <select id="selectByEname" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from bonus
+    where ename = #{ename}
+  </select>
+
+  <delete id="delete" parameterType="java.lang.String">
+    delete from bonus
+    where ename = #{ename}
+  </delete>
+
+  <update id="update" parameterType="com.xjm.springboot.mybatis.demo.domain.Bonus">
+    update bonus
+    set job = #{job,jdbcType=VARCHAR},
+    sal = #{sal,jdbcType=DECIMAL},
+    comm = #{comm,jdbcType=DECIMAL}
+    where ename = #{ename,jdbcType=VARCHAR}
+  </update>
+
+</mapper>
