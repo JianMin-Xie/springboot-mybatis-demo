@@ -1,46 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xjm.springboot.mybatis.demo.mapper.DeptMapper">
-  <resultMap id="BaseResultMap" type="com.xjm.springboot.mybatis.demo.domain.Dept">
-    <!--@mbg.generated-->
-    <!--@Table dept-->
-    <id column="deptno" jdbcType="INTEGER" property="deptno" />
-    <result column="dname" jdbcType="VARCHAR" property="dname" />
-    <result column="loc" jdbcType="VARCHAR" property="loc" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    deptno, dname, loc
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from dept
-    where deptno = #{deptno,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--@mbg.generated-->
-    delete from dept
-    where deptno = #{deptno,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" keyColumn="deptno" keyProperty="deptno" parameterType="com.xjm.springboot.mybatis.demo.domain.Dept" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into dept (dname, loc)
-    values (#{dname,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.xjm.springboot.mybatis.demo.domain.Dept">
-    <!--@mbg.generated-->
-    update dept
-    set dname = #{dname,jdbcType=VARCHAR},
-      loc = #{loc,jdbcType=VARCHAR}
-    where deptno = #{deptno,jdbcType=INTEGER}
-  </update>
+    <resultMap id="BaseResultMap" type="com.xjm.springboot.mybatis.demo.domain.Dept">
+        <!--@mbg.generated-->
+        <!--@Table dept-->
+        <id column="deptno" jdbcType="INTEGER" property="deptno"/>
+        <result column="dname" jdbcType="VARCHAR" property="dname"/>
+        <result column="loc" jdbcType="VARCHAR" property="loc"/>
+    </resultMap>
 
-  <select id="selectAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from dept
+    <resultMap id="ResultMap" type="com.xjm.springboot.mybatis.demo.domain.Dept">
+        <id column="deptno" jdbcType="INTEGER" property="deptno"/>
+        <result column="dname" jdbcType="VARCHAR" property="dname"/>
+        <result column="loc" jdbcType="VARCHAR" property="loc"/>
+        <collection property="empList" ofType="com.xjm.springboot.mybatis.demo.domain.Emp">
+            <id column="empno" jdbcType="INTEGER" property="empno"/>
+            <result column="ename" jdbcType="VARCHAR" property="ename"/>
+            <result column="job" jdbcType="VARCHAR" property="job"/>
+            <result column="mgr" jdbcType="INTEGER" property="mgr"/>
+            <result column="hiredate" jdbcType="DATE" property="hiredate"/>
+            <result column="sal" jdbcType="DECIMAL" property="sal"/>
+            <result column="comm" jdbcType="DECIMAL" property="comm"/>
+            <result column="deptno" jdbcType="INTEGER" property="deptno"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        deptno, dname, loc
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from dept
+        where deptno = #{deptno,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from dept
+        where deptno = #{deptno,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="deptno" keyProperty="deptno"
+            parameterType="com.xjm.springboot.mybatis.demo.domain.Dept" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into dept (dname, loc)
+        values (#{dname,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.xjm.springboot.mybatis.demo.domain.Dept">
+        <!--@mbg.generated-->
+        update dept
+        set dname = #{dname,jdbcType=VARCHAR},
+        loc = #{loc,jdbcType=VARCHAR}
+        where deptno = #{deptno,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dept
+    </select>
+
+
+    <select id="AssociationQuery" resultMap="ResultMap">
+        SELECT
+        a.*, b.dname
+        FROM
+        emp a
+        INNER JOIN dept b ON a.deptno = b.deptno
+        WHERE
+        DATE_ADD(hiredate, INTERVAL 10 YEAR) > STR_TO_DATE('01/10/1995', '%m/%d/%Y')
+        ORDER BY
+        hiredate DESC
+
   </select>
 
 </mapper>

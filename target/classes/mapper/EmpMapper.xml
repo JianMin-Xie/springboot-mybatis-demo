@@ -13,6 +13,9 @@
     <result column="comm" jdbcType="DECIMAL" property="comm" />
     <result column="deptno" jdbcType="INTEGER" property="deptno" />
   </resultMap>
+
+
+
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     empno, ename, job, mgr, hiredate, sal, comm, deptno
@@ -60,4 +63,6 @@
       <include refid="Base_Column_List" />
       from emp
     </select>
+
+
 </mapper>

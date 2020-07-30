@@ -18,4 +18,6 @@ public interface DeptMapper {
     int deleteByPrimaryKey(Integer deptno);
 
     int updateByPrimaryKey(Dept record);
+
+    List<Dept> AssociationQuery();
 }

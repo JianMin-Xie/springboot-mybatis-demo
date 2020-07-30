@@ -22,6 +22,7 @@ public class DeptMapperTest {
     @Resource
     private DeptMapper deptMapper;
 
+
     /**
      * 查询全部记录
      */
@@ -50,13 +51,37 @@ public class DeptMapperTest {
     }
 
     /**
-     * 插入
+     * 关联查询：
+     * SELECT
+     * 	a.*, b.dname
+     * FROM
+     * 	emp a
+     * INNER JOIN dept b ON a.deptno = b.deptno
+     * WHERE
+     * 	DATE_ADD(hiredate, INTERVAL 10 YEAR) > STR_TO_DATE('01/10/1995', '%m/%d/%Y')
+     * ORDER BY
+     * 	hiredate DESC;
+     */
+    @Test
+    public void AssociationQuery(){
+        List<Dept> depts = deptMapper.AssociationQuery();
+        if (depts == null || depts.size() == 0) {
+            System.out.println("表中无数据！");
+        } else {
+            System.out.println(depts);
+        }
+    }
+
+    /**
+     * 插入 ， INSERT INTO dept VALUES (10,'ACCOUNTING','NEW YORK') ;
+     *
      */
     @Test
     public void insert() {
         Dept dept = new Dept();
-        dept.setDname("testDname1");
-        dept.setLoc("testLoc1");
+        dept.setDeptno(10);
+        dept.setDname("ACCOUNTING");
+        dept.setLoc("NEW YORK");
 
         int insert = deptMapper.insert(dept);
         if (insert > 0) {

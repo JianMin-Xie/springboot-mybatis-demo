@@ -1,4 +1,5 @@
 package com.xjm.springboot.mybatis.demo.mapper;
+
 import com.xjm.springboot.mybatis.demo.domain.Emp;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,6 +52,7 @@ public class EmpMapperTest {
         }
     }
 
+
     /**
      * 插入
      */
@@ -77,11 +79,11 @@ public class EmpMapperTest {
 
 
     /**
-     * 删除
+     * 删除：DELETE FROM emp WHERE empno = 7934;
      */
     @Test
     public void deleteByPrimaryKey() {
-        int i = empMapper.deleteByPrimaryKey(7935);
+        int i = empMapper.deleteByPrimaryKey(7934);
         if (i > 0){
             System.out.println("删除成功！");
         }
@@ -91,18 +93,18 @@ public class EmpMapperTest {
     }
 
     /**
-     * 更新
+     * 更新：UPDATE emp SET job='MANAGER' WHERE  empno = 7369;
      */
     @Test
     public void updateByPrimaryKey() {
         Emp emp = empMapper.selectByPrimaryKey(7369);
-        emp.setEname("testupdateEanme1");
-        emp.setJob("testupdateJob1");
-        emp.setMgr(7902);
-        emp.setHiredate(new Date());
-        emp.setSal(new BigDecimal("1000"));
-        emp.setComm(new BigDecimal("0"));
-        emp.setDeptno(20);
+//        emp.setEname("testupdateEanme1");
+        emp.setJob("MANAGER");
+//        emp.setMgr(7902);
+//        emp.setHiredate(new Date());
+//        emp.setSal(new BigDecimal("1000"));
+//        emp.setComm(new BigDecimal("0"));
+//        emp.setDeptno(20);
 
         int i = empMapper.updateByPrimaryKey(emp);
         if (i>0){

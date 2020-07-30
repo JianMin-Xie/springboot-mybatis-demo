@@ -1,7 +1,9 @@
 package com.xjm.springboot.mybatis.demo.domain;
 
-import java.io.Serializable;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.List;
 
 /**
 @author JianMin Xie
@@ -26,6 +28,11 @@ public class Dept implements Serializable {
     * 部门所在位置
     */
     private String loc;
+
+    /**
+     * 多个员工
+     */
+    private List<Emp> empList;
 
     private static final long serialVersionUID = 1L;
 }
