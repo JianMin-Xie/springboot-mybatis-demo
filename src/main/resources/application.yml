@@ -1,11 +1,12 @@
 spring:
   datasource:
     # 单个 mysql server 时的连接方式：
-    url: jdbc:mysql://localhost:3306/scott?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
+#    url: jdbc:mysql://localhost:3306/scott?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
     # 多个 mysql server 时的连接方式， jdbc 填写多个IP 地址
+#    url: jdbc:mysql://120.78.212.237:3306,120.78.212.237:3307/scott?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
 #    url: jdbc:mysql:loadbalance://120.78.212.237:3306,120.78.212.237:3307/scott?roundRobinLoadBalance=true
     # Haproxy 负载均衡
-#    url: jdbc:mysql://120.78.212.237:7306/scott?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
+    url: jdbc:mysql://120.78.212.237:7306/scott?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver

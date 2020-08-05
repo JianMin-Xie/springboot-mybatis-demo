@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sdb.crm.mapper.DeptMapper">
-  <resultMap id="BaseResultMap" type="com.sdb.crm.domain.Dept">
-    <id column="deptno" jdbcType="INTEGER" property="deptno" />
-    <result column="dname" jdbcType="VARCHAR" property="dname" />
-    <result column="loc" jdbcType="VARCHAR" property="loc" />
-  </resultMap>
-
-
-  <resultMap id="ResultMap" type="com.sdb.crm.domain.Dept">
-    <id column="deptno" jdbcType="INTEGER" property="deptno"/>
-    <result column="dname" jdbcType="VARCHAR" property="dname"/>
-    <result column="loc" jdbcType="VARCHAR" property="loc"/>
-    <collection property="empList" ofType="com.sdb.crm.domain.Emp">
-      <id column="empno" jdbcType="INTEGER" property="empno"/>
-      <result column="ename" jdbcType="VARCHAR" property="ename"/>
-      <result column="job" jdbcType="VARCHAR" property="job"/>
-      <result column="mgr" jdbcType="INTEGER" property="mgr"/>
-      <result column="hiredate" jdbcType="DATE" property="hiredate"/>
-      <result column="sal" jdbcType="DECIMAL" property="sal"/>
-      <result column="comm" jdbcType="DECIMAL" property="comm"/>
-      <result column="deptno" jdbcType="INTEGER" property="deptno"/>
-    </collection>
-  </resultMap>
 
   <sql id="Example_Where_Clause">
     <where>
@@ -85,7 +63,7 @@
   <sql id="Base_Column_List">
     deptno, dname, loc
   </sql>
-  <select id="selectByExample" parameterType="com.sdb.crm.domain.DeptExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.sdb.crm.domain.DeptExample" resultType="com.sdb.crm.domain.Dept">
     select
     <if test="distinct">
       distinct
@@ -107,7 +85,7 @@
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.sdb.crm.domain.Dept">
     select 
     <include refid="Base_Column_List" />
     from dept
@@ -197,7 +175,7 @@
     where deptno = #{deptno,jdbcType=INTEGER}
   </update>
 
-  <select id="AssociationQuery" resultMap="ResultMap">
+  <select id="AssociationQuery" resultType="com.sdb.crm.domain.Dept">
         SELECT
         a.*, b.dname
         FROM

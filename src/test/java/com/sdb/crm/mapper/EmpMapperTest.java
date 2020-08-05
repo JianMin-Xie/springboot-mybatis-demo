@@ -102,13 +102,7 @@ public class EmpMapperTest {
     @Test
     public void updateByPrimaryKey() {
         Emp emp = empMapper.selectByPrimaryKey(7369);
-//        emp.setEname("testupdateEanme1");
         emp.setJob("MANAGER");
-//        emp.setMgr(7902);
-//        emp.setHiredate(new Date());
-//        emp.setSal(new BigDecimal("1000"));
-//        emp.setComm(new BigDecimal("0"));
-//        emp.setDeptno(20);
 
         int i = empMapper.updateByPrimaryKey(emp);
         if (i>0){

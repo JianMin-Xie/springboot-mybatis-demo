@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sdb.crm.mapper.SalgradeMapper">
-<!--  <resultMap id="BaseResultMap" type="com.sdb.crm.domain.Salgrade">-->
-<!--    <result column="grade" jdbcType="INTEGER" property="grade" />-->
-<!--    <result column="losal" jdbcType="INTEGER" property="losal" />-->
-<!--    <result column="hisal" jdbcType="INTEGER" property="hisal" />-->
-<!--  </resultMap>-->
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

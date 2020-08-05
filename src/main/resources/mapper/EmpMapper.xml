@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sdb.crm.mapper.EmpMapper">
-  <resultMap id="BaseResultMap" type="com.sdb.crm.domain.Emp">
-    <id column="empno" jdbcType="INTEGER" property="empno" />
-    <result column="ename" jdbcType="VARCHAR" property="ename" />
-    <result column="job" jdbcType="VARCHAR" property="job" />
-    <result column="mgr" jdbcType="INTEGER" property="mgr" />
-    <result column="hiredate" jdbcType="DATE" property="hiredate" />
-    <result column="sal" jdbcType="DECIMAL" property="sal" />
-    <result column="comm" jdbcType="DECIMAL" property="comm" />
-    <result column="deptno" jdbcType="INTEGER" property="deptno" />
-  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -72,7 +62,7 @@
   <sql id="Base_Column_List">
     empno, ename, job, mgr, hiredate, sal, comm, deptno
   </sql>
-  <select id="selectByExample" parameterType="com.sdb.crm.domain.EmpExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.sdb.crm.domain.EmpExample" resultType="com.sdb.crm.domain.Emp">
     select
     <if test="distinct">
       distinct
@@ -94,7 +84,7 @@
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.sdb.crm.domain.Emp">
     select 
     <include refid="Base_Column_List" />
     from emp

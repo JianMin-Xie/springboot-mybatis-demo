@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sdb.crm.mapper.BonusMapper">
-  <resultMap id="BaseResultMap" type="com.sdb.crm.domain.Bonus">
-    <result column="ename" jdbcType="VARCHAR" property="ename" />
-    <result column="job" jdbcType="VARCHAR" property="job" />
-    <result column="sal" jdbcType="DECIMAL" property="sal" />
-    <result column="comm" jdbcType="DECIMAL" property="comm" />
-  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -68,7 +62,7 @@
   <sql id="Base_Column_List">
     ename, job, sal, comm
   </sql>
-  <select id="selectByExample" parameterType="com.sdb.crm.domain.BonusExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.sdb.crm.domain.BonusExample" resultType="com.sdb.crm.domain.Bonus">
     select
     <if test="distinct">
       distinct
