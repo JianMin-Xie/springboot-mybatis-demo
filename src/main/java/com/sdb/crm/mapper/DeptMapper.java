@@ -29,5 +29,5 @@ public interface DeptMapper {
 
     int updateByPrimaryKey(Dept record);
 
-    List<Dept> AssociationQuery();
+    List<Dept> AssociationQuery(String date);
 }

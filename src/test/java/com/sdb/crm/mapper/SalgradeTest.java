@@ -17,7 +17,7 @@ import java.util.List;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class SalgradeMapperTest {
+public class SalgradeTest {
 
     @Resource
     private SalgradeMapper salgradeMapper;

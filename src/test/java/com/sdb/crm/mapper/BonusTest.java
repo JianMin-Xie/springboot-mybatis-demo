@@ -17,7 +17,7 @@ import java.util.List;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class BonusMapperTest {
+public class BonusTest {
 
     @Resource
     private BonusMapper bonusMapper;

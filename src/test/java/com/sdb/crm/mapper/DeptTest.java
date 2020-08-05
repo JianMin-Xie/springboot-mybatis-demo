@@ -1,5 +1,4 @@
 package com.sdb.crm.mapper;
-
 import com.sdb.crm.domain.Dept;
 import com.sdb.crm.domain.DeptExample;
 import org.junit.Test;
@@ -18,7 +17,7 @@ import java.util.List;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class DeptMapperTest {
+public class DeptTest {
 
     @Resource
     private DeptMapper deptMapper;
@@ -52,7 +51,25 @@ public class DeptMapperTest {
     }
 
     /**
-     * 关联查询：
+     * 查询
+     */
+    @Test
+    public void select() {
+
+        DeptExample deptExample = new DeptExample();
+        deptExample.createCriteria().andDeptnoEqualTo(30);
+
+        List<Dept> depts = deptMapper.selectByExample(deptExample);
+
+        if (depts == null || depts.size() == 0) {
+            System.out.println("表中不存在该数据！");
+        } else {
+            System.out.println(depts);
+        }
+    }
+
+    /**
+     * 关联查询： 查询雇佣日期加上10年大于输入日期的雇员信息以及部门名称
      * SELECT
      * a.*, b.dname
      * FROM
@@ -65,7 +82,10 @@ public class DeptMapperTest {
      */
     @Test
     public void AssociationQuery() {
-        List<Dept> depts = deptMapper.AssociationQuery();
+        /**
+         * 输入日期必须是  %m/%d/%Y 格式
+         */
+        List<Dept> depts = deptMapper.AssociationQuery("01/10/1995");
         if (depts == null || depts.size() == 0) {
             System.out.println("表中无数据！");
         } else {
@@ -94,7 +114,7 @@ public class DeptMapperTest {
 
 
     /**
-     * 删除
+     * 根据主键删除
      */
     @Test
     public void deleteByPrimaryKey() {
@@ -106,9 +126,26 @@ public class DeptMapperTest {
         }
     }
 
+    /**
+     * 删除 , DELETE FROM dept WHERE dname = 'testDname1' AND loc = 'testLoc1';
+     */
+    @Test
+    public void delete() {
+        DeptExample deptExample = new DeptExample();
+        deptExample.createCriteria().andDnameEqualTo("testDname1").andLocEqualTo("testLoc1");
+
+        int i = deptMapper.deleteByExample(deptExample);
+
+        if (i > 0) {
+            System.out.println("删除成功！");
+        } else {
+            System.out.println("删除失败！");
+        }
+    }
+
 
     /**
-     * 更新
+     * 根据主键更新
      */
     @Test
     public void updateByPrimaryKey() {
@@ -117,6 +154,27 @@ public class DeptMapperTest {
         dept.setLoc("testLoc1");
 
         int i = deptMapper.updateByPrimaryKey(dept);
+
+        if (i > 0) {
+            System.out.println("更新成功！");
+        } else {
+            System.out.println("更新失败！");
+        }
+
+    }
+
+    /**
+     * 更新
+     */
+    @Test
+    public void update() {
+        Dept dept = new Dept();
+        dept.setDname("testDname222");
+        dept.setLoc("testLoc222");
+
+        DeptExample deptExample = new DeptExample();
+        deptExample.createCriteria().andDeptnoEqualTo(30);
+        int i = deptMapper.updateByExampleSelective(dept, deptExample);
 
         if (i > 0) {
             System.out.println("更新成功！");

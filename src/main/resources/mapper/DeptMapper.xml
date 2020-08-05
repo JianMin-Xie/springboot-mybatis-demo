@@ -2,6 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sdb.crm.mapper.DeptMapper">
 
+  <resultMap id="resultmap" type="com.sdb.crm.domain.Dept">
+    <id property="deptno" column="deptno"></id>
+    <result property="dname" column="dname"></result>
+    <result property="loc" column="loc"></result>
+    <collection property="empList" ofType="com.sdb.crm.domain.Emp" >
+      <id property="empno" column="empno"></id>
+      <result property="ename" column="ename"></result>
+      <result property="job" column="job"></result>
+      <result property="mgr" column="mgr"></result>
+      <result property="hiredate" column="hiredate"></result>
+      <result property="sal" column="sal"></result>
+      <result property="comm" column="comn"></result>
+    </collection>
+  </resultMap>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -175,16 +190,16 @@
     where deptno = #{deptno,jdbcType=INTEGER}
   </update>
 
-  <select id="AssociationQuery" resultType="com.sdb.crm.domain.Dept">
+  <select id="AssociationQuery" parameterType="java.lang.String"  resultMap="resultmap">
         SELECT
         a.*, b.dname
         FROM
         emp a
         INNER JOIN dept b ON a.deptno = b.deptno
         WHERE
-        DATE_ADD(hiredate, INTERVAL 10 YEAR) > STR_TO_DATE('01/10/1995', '%m/%d/%Y')
+        DATE_ADD(hiredate, INTERVAL 10 YEAR) > STR_TO_DATE(#{date,jdbcType=VARCHAR}, '%m/%d/%Y')
         ORDER BY
         hiredate DESC
-</select>
+  </select>
 
 </mapper>

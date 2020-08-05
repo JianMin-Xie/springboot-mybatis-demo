@@ -19,7 +19,7 @@ import java.util.List;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class EmpMapperTest {
+public class EmpTest {
 
     @Resource
     private EmpMapper empMapper;

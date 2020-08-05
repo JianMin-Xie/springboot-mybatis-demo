@@ -26,6 +26,9 @@ public class Dept implements Serializable {
      */
     private String loc;
 
+    /**
+     * 关联属性
+     */
     private List<Emp> empList;
 
     private static final long serialVersionUID = 1L;
